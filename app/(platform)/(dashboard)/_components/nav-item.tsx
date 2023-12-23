@@ -95,7 +95,7 @@ const NavItem: React.FC<INavItemProps> = ({
             variant="ghost"
             className={cn(
               "w-full font-normal justify-start pl-10 mb-1",
-              pathname === route.href && "bg-primary/80"
+              pathname === route.href && "bg-primary/80 hover:bg-primary/80"
             )}
           >
             {route.icon}
