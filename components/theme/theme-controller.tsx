@@ -15,6 +15,7 @@ import {
   TTheme,
   getThemeFromLocal,
 } from "@/constant/theme";
+import { ColorWheelIcon } from "@radix-ui/react-icons";
 
 // Hooks
 import { useEffect, useState } from "react";
@@ -35,8 +36,11 @@ export function ThemeController() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+      <DropdownMenuTrigger asChild className="hidden md:block">
         <Button>Theme</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild className="md:hidden">
+        <ColorWheelIcon className="text-primary w-4 h-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-30">
         <DropdownMenuRadioGroup
