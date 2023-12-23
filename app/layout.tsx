@@ -31,7 +31,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="red">
+    <html
+      lang="en"
+      data-theme="red"
+      className="light"
+      style={{
+        colorScheme: "light",
+      }}
+    >
       <body className={`${inter.className} bg-background`}>
         <ThemeProvider
           attribute="class"
