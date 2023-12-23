@@ -66,10 +66,19 @@ const tailwindConfig = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "not-found": {
+          "0%": {
+            transform: "rotate(0deg) translate(0, -15%)",
+          },
+          "100%": {
+            transform: "rotate(10deg) translate(0, -18%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "not-found": "not-found 3s linear",
       },
     },
   },
