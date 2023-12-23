@@ -8,6 +8,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Activity, CreditCard, Layout, Settings } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
 // Hooks
 import { useRouter, usePathname } from "next/navigation";
 import { useMemo } from "react";
@@ -106,4 +107,14 @@ const NavItem: React.FC<INavItemProps> = ({
   );
 };
 
+export const NavItemSkeleton: React.FC = () => {
+  return (
+    <div className="flex items-center gap-x-2">
+      <div className="w-10 h-10 relative shrink-0">
+        <Skeleton className="h-full w-full absolute" />
+      </div>
+      <Skeleton className="h-10 w-full" />
+    </div>
+  );
+};
 export default NavItem;
