@@ -11,7 +11,6 @@ import {
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
-import { TooltipArrow } from "@radix-ui/react-tooltip";
 interface IFoldableSeparatorProps {
   isFold: boolean;
   onToggleFold: (fold: boolean) => void;
@@ -41,7 +40,6 @@ const FoldableSeparator: React.FC<IFoldableSeparatorProps> = ({
               </div>
             </TooltipTrigger>
             <TooltipContent className="z-[100]">
-              <TooltipArrow className="!bg-background" />
               <p>Toggle fold</p>
             </TooltipContent>
           </Tooltip>
