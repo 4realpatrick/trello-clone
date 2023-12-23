@@ -1,8 +1,13 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { siteConfig } from "@/config/site";
+// Cmp
 import { ThemeProvider } from "@/components/ui/theme-provider";
+// Type
+import type { Metadata } from "next";
+// Font
+import { Inter } from "next/font/google";
+// Style
+import "./globals.css";
+// Constant
+import { siteConfig } from "@/config/site";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,4 +1,5 @@
 "use client";
+// Cmp
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -7,12 +8,16 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { THEME_ARRAY, TTheme } from "@/constant/theme";
+// Constant
+import {
+  TASKIFY_THEME_KEY,
+  THEME_ARRAY,
+  TTheme,
+  getThemeFromLocal,
+} from "@/constant/theme";
+
+// Hooks
 import { useEffect, useState } from "react";
-const TASKIFY_THEME_KEY = "taskify_theme_key";
-function getThemeFromLocal(): TTheme {
-  return (localStorage.getItem(TASKIFY_THEME_KEY) || "blue") as TTheme;
-}
 
 export function ThemeController() {
   const [curTheme, setCurTheme] = useState<TTheme>(getThemeFromLocal());

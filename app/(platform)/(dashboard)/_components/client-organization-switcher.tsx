@@ -1,6 +1,9 @@
 "use client";
+// Cmp
 import { OrganizationSwitcher } from "@clerk/nextjs";
+// Hooks
 import { useTheme } from "next-themes";
+// Constant
 import { dark } from "@clerk/themes";
 const ClientOrganizationSwitcher = () => {
   const { theme } = useTheme();

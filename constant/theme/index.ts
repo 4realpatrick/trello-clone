@@ -8,3 +8,7 @@ export const THEME_ARRAY: TTheme[] = [
 ];
 export type TMode = "system" | "light" | "dark";
 export const MODE_ARRAY: TMode[] = ["system", "light", "dark"];
+export const TASKIFY_THEME_KEY = "taskify_theme_key";
+export function getThemeFromLocal(): TTheme {
+  return (localStorage.getItem(TASKIFY_THEME_KEY) || "blue") as TTheme;
+}

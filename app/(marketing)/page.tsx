@@ -1,14 +1,18 @@
+// Cmp
 import { Button } from "@/components/ui/button";
-import { headingFont } from "@/constant/headingFont";
-import { cn } from "@/lib/utils";
 import { Medal } from "lucide-react";
-import { Poppins } from "next/font/google";
 import Link from "next/link";
+// Font
+import { headingFont } from "@/constant/headingFont";
+import { Poppins } from "next/font/google";
+// Utils
+import { cn } from "@/lib/utils";
 
 const textFont = Poppins({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
+
 const MarketingPage = () => {
   return (
     <div className="flex items-center justify-center flex-col">

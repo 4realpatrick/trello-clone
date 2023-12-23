@@ -1,7 +1,6 @@
 "use client";
-import * as React from "react";
+// Cmp
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { useTheme as useMode } from "next-themes";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,6 +9,9 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+// Hooks
+import { useTheme as useMode } from "next-themes";
+// Constant
 import { MODE_ARRAY } from "@/constant/theme";
 
 export function ModeToggle() {

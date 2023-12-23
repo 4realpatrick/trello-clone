@@ -1,9 +1,10 @@
-import { headingFont } from "@/constant/headingFont";
-import { cn } from "@/lib/utils";
-
+// Cmp
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+// Font
+import { headingFont } from "@/constant/headingFont";
+// Utils
+import { cn } from "@/lib/utils";
 
 interface ILogoProps {
   size?: number;
