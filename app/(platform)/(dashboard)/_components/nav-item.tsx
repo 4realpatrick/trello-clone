@@ -77,6 +77,7 @@ const NavItem: React.FC<INavItemProps> = ({
         <div className="flex items-center gap-x-2">
           <div className="w-7 h-7 relative">
             <Image
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               fill
               src={organization.imageUrl}
               alt="Organization"
