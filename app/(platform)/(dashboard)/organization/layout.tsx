@@ -20,7 +20,12 @@ const OrganizationLayout = ({ children }: { children: React.ReactNode }) => {
         >
           <Sidebar />
         </div>
-        <FoldableSeparator isFold={isFold} onToggleFold={setIsFold} />
+        <FoldableSeparator
+          isFold={isFold}
+          onToggleFold={setIsFold}
+          classNames="hidden md:block"
+        />
+
         {children}
       </div>
     </main>
