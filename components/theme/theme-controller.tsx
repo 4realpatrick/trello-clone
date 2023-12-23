@@ -33,7 +33,11 @@ export function ThemeController() {
           onValueChange={(val: string) => setCurTheme(val as TTheme)}
         >
           {THEME_ARRAY.map((theme) => (
-            <DropdownMenuRadioItem value={theme} className="justify-between">
+            <DropdownMenuRadioItem
+              value={theme}
+              className="justify-between"
+              key={theme}
+            >
               <span>
                 {theme.slice(0, 1).toUpperCase() + theme.slice(1).toLowerCase()}
               </span>
