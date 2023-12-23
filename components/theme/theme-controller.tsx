@@ -23,8 +23,14 @@ export function ThemeController() {
   const [curTheme, setCurTheme] = useState<TTheme>(getThemeFromLocal());
 
   useEffect(() => {
-    localStorage.setItem(TASKIFY_THEME_KEY, curTheme);
-    document.documentElement.setAttribute("data-theme", curTheme);
+    try {
+      if (localStorage && document) {
+        localStorage.setItem(TASKIFY_THEME_KEY, curTheme);
+        document.documentElement.setAttribute("data-theme", curTheme);
+      }
+    } catch (error) {
+      console.error("error found in theme.controller.tsx:", error);
+    }
   }, [curTheme]);
 
   return (

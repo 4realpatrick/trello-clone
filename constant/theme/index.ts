@@ -10,5 +10,12 @@ export type TMode = "system" | "light" | "dark";
 export const MODE_ARRAY: TMode[] = ["system", "light", "dark"];
 export const TASKIFY_THEME_KEY = "taskify_theme_key";
 export function getThemeFromLocal(): TTheme {
-  return (localStorage.getItem(TASKIFY_THEME_KEY) || "blue") as TTheme;
+  try {
+    if (localStorage) {
+      return (localStorage.getItem(TASKIFY_THEME_KEY) || "blue") as TTheme;
+    }
+    return "blue";
+  } catch (error) {
+    return "blue";
+  }
 }
