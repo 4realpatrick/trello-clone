@@ -2,7 +2,6 @@
 // Cmp
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Plus } from "lucide-react";
 import Link from "next/link";

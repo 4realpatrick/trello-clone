@@ -11,14 +11,8 @@ const SettingPage = () => {
         appearance={{
           baseTheme: mode === "dark" ? dark : undefined,
           elements: {
-            rootBox: {
-              boxShadow: "none",
-              width: "100%",
-            },
-            card: {
-              border: "1px solid hsl(var(--foreground))",
-              boxShadow: "none",
-            },
+            rootBox: "shadow-none w-full",
+            card: "border-[1px] border-foreground shadow-none",
             membersPageInviteButton: "bg-primary hover:bg-primary/80",
             navbarButtonIcon: "text-primary",
           },

@@ -5,6 +5,7 @@ import { OrganizationSwitcher } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 // Constant
 import { dark } from "@clerk/themes";
+
 const ClientOrganizationSwitcher = () => {
   const { theme } = useTheme();
   const baseTheme = theme === "dark" ? dark : undefined;
