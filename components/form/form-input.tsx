@@ -33,6 +33,7 @@ const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
             {...props}
             disabled={pending || disabled}
             ref={ref}
+            name={id}
             className={cn("text-sm px-2 py-1 h-7", className)}
             aria-describedby={`${id}-error`}
           />
