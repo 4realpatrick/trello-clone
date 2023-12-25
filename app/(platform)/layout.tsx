@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 const PlatFormLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <ClerkProvider>
-      <Toaster />
+      <Toaster richColors />
       {children}
     </ClerkProvider>
   );
