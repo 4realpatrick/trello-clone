@@ -11,7 +11,7 @@ const PopoverTrigger = PopoverPrimitive.Trigger;
 
 const PopoverClose = PopoverPrimitive.Close;
 
-const PopoverArrow = PopoverPrimitive.Anchor;
+const PopoverArrow = PopoverPrimitive.Arrow;
 
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
