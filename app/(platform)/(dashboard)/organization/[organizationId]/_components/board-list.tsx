@@ -48,7 +48,7 @@ const BoardList = async () => {
             <span className="text-xs">5 remaining</span>
             <Hint
               sideOffset={40}
-              descrption={`Free Workspances can have up to 5 open boards. For unlimited boards upgrade this workspace.`}
+              descrption={`Free Workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace.`}
             >
               <HelpCircle className="absolute bottom-2 right-2 size-[14px]" />
             </Hint>
