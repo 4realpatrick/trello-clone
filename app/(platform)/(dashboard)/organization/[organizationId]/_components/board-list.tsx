@@ -35,7 +35,7 @@ const BoardList = async () => {
             style={{ backgroundImage: `url(${board.imageThumbUrl})` }}
             className="group relative aspect-video bg-no-repeat bg-center bg-cover bg-primary rounded-sm size-full p-2 overflow-hidden"
           >
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition" />
+            <div className="absolute inset-0 group-hover:bg-foreground/40 transition" />
             <p className="relative font-semibold text-white">{board.title}</p>
           </Link>
         ))}
