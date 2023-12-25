@@ -84,7 +84,8 @@ export function ThemeController() {
                     theme.slice(1).toLowerCase()}
                 </span>
                 <div
-                  className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 rotate-90 justify-end bg-${theme}-500`}
+                  className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent hover:bg-primary/80 rotate-90 justify-end`}
+                  style={{ background: theme }}
                 ></div>
               </DropdownMenuRadioItem>
             ))}
