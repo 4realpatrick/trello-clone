@@ -14,12 +14,14 @@ import { toast } from "sonner";
 import FormPicker from "./form-picker";
 // Hooks
 import { useAction } from "@/hooks/use-action";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useRouter } from "next/navigation";
 // Server action
 import { createBoard } from "@/actions/create-board";
+// Function
+import dayjs from "dayjs";
 // Types
 import type { ElementRef } from "react";
-import { useRouter } from "next/navigation";
 interface IFormPopverProps {
   children: React.ReactNode;
   side?: "left" | "right" | "top" | "bottom";
@@ -36,9 +38,14 @@ const FormPopover: React.FC<IFormPopverProps> = ({
   const router = useRouter();
   const { execute, resetError, fieldErrors } = useAction(createBoard, {
     onSuccess(data) {
-      toast.success("Board created");
       closeRef.current?.click();
-      router.push(`/board/${data.id}`);
+      toast.success("Board created", {
+        duration: 3000,
+        description: dayjs().format("dddd, MMMM D, YYYY h:mm A"),
+        onAutoClose(toast) {
+          router.push(`/board/${data.id}`);
+        },
+      });
     },
     onError(error) {
       toast.error(error);
@@ -49,10 +56,6 @@ const FormPopover: React.FC<IFormPopverProps> = ({
     const image = formData.get("image") as string;
     execute({ title, image });
   };
-  // const handleOpenChange = (open: boolean) => {
-  //   console.log("open:", open);
-  //   ();
-  // };
   return (
     <Popover onOpenChange={resetError}>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
