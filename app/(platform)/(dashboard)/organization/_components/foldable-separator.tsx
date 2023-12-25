@@ -11,6 +11,7 @@ import {
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
+import Hint from "@/components/hint";
 // Types
 interface IFoldableSeparatorProps {
   isFold: boolean;
@@ -28,25 +29,23 @@ const FoldableSeparator: React.FC<IFoldableSeparatorProps> = ({
       style={{ height: "inherit" }}
       className={`relative ${classNames}`}
       children={
-        <TooltipProvider delayDuration={200}>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div
-                className="absolute top-[50%] w-6 h-6 border rounded-md flex items-center justify-center translate-x-[-50%] bg-background cursor-pointer"
-                onClick={() => onToggleFold(!isFold)}
-              >
-                {isFold ? (
-                  <DoubleArrowRightIcon className="text-primary" />
-                ) : (
-                  <DoubleArrowLeftIcon className="text-primary" />
-                )}
-              </div>
-            </TooltipTrigger>
-            <TooltipContent className="z-[100]">
-              <p>{isFold ? "Open the sidebar" : "Close the sidebar"}</p>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Hint
+          descrption={isFold ? "Open the sidebar" : "Close the sidebar"}
+          side="top"
+          sideOffset={5}
+          asChild
+        >
+          <div
+            className="absolute top-[50%] w-6 h-6 border rounded-md flex items-center justify-center translate-x-[-50%] bg-background cursor-pointer"
+            onClick={() => onToggleFold(!isFold)}
+          >
+            {isFold ? (
+              <DoubleArrowRightIcon className="text-primary" />
+            ) : (
+              <DoubleArrowLeftIcon className="text-primary" />
+            )}
+          </div>
+        </Hint>
       }
     />
   );
