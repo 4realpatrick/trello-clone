@@ -14,7 +14,7 @@ import { toast } from "sonner";
 import FormPicker from "./form-picker";
 // Hooks
 import { useAction } from "@/hooks/use-action";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 // Server action
 import { createBoard } from "@/actions/create-board";
 // Types
@@ -34,7 +34,7 @@ const FormPopover: React.FC<IFormPopverProps> = ({
 }) => {
   const closeRef = useRef<ElementRef<"button">>(null);
   const router = useRouter();
-  const { execute, fieldErrors } = useAction(createBoard, {
+  const { execute, resetError, fieldErrors } = useAction(createBoard, {
     onSuccess(data) {
       toast.success("Board created");
       closeRef.current?.click();
@@ -49,8 +49,12 @@ const FormPopover: React.FC<IFormPopverProps> = ({
     const image = formData.get("image") as string;
     execute({ title, image });
   };
+  // const handleOpenChange = (open: boolean) => {
+  //   console.log("open:", open);
+  //   ();
+  // };
   return (
-    <Popover>
+    <Popover onOpenChange={resetError}>
       <PopoverTrigger asChild>{children}</PopoverTrigger>
       <PopoverContent
         align={align}
