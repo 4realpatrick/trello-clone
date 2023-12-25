@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-
 import { ActionState, FieldErrors } from "@/lib/create-safe-action";
 
 type TAction<TInput, TOutput> = (
@@ -49,8 +48,13 @@ export const useAction = <TInput, TOutput>(
     },
     [action, options]
   );
+  const resetError = useCallback(() => {
+    setError(undefined);
+    setFieldErrors(undefined);
+  }, []);
   return {
     execute,
+    resetError,
     isLoading,
     data,
     error,
