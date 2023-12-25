@@ -2,12 +2,13 @@
 import Logo from "@/components/logo";
 import { ModeToggle } from "@/components/theme/mode-toggle";
 import { Button } from "@/components/ui/button";
-import { UserButton } from "@clerk/nextjs";
+import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
 import { Plus } from "lucide-react";
 import ClientOrganizationSwitcher from "./client-organization-switcher";
 import { ThemeController } from "@/components/theme/theme-controller";
 import MobileSidebar from "./mobile-sidebar";
 import FormPopover from "@/components/form/form-popover";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const Navbar = () => {
   return (
@@ -34,18 +35,23 @@ const Navbar = () => {
       <div className="ml-auto flex items-center gap-x-2">
         <ThemeController />
         <ModeToggle />
-        <ClientOrganizationSwitcher />
-        <UserButton
-          afterSignOutUrl="/"
-          appearance={{
-            elements: {
-              avatarBox: {
-                height: 30,
-                width: 30,
+        <ClerkLoading>
+          <Skeleton className="w-44 h-10" />
+        </ClerkLoading>
+        <ClerkLoaded>
+          <ClientOrganizationSwitcher />
+          <UserButton
+            afterSignOutUrl="/"
+            appearance={{
+              elements: {
+                avatarBox: {
+                  height: 30,
+                  width: 30,
+                },
               },
-            },
-          }}
-        />
+            }}
+          />
+        </ClerkLoaded>
       </div>
     </nav>
   );
