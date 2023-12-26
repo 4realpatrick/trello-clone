@@ -87,13 +87,13 @@ const FormPicker: React.FC<IFormPickerProps> = ({ id, errors }) => {
             />
             {selectedImageId === img.id && (
               <div className="absolute inset-y-0 size-full bg-neutral-950/30 flex items-center justify-center rounded-sm">
-                <Check className="size-4 text-white" />
+                <Check className="size-4 text-white md:size-8" />
               </div>
             )}
             <Link
               href={img.links.html}
               target="_blank"
-              className="opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate hover:underline p-1 bg-background/50 text-primary"
+              className="opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate hover:underline p-1 bg-background/50 text-primary md:text-base"
             >
               {img.user.name}
             </Link>

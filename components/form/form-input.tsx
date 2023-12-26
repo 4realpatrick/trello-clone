@@ -24,7 +24,7 @@ const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
           {!!label && (
             <Label
               htmlFor={id}
-              className="text-xs font-semibold text-neutral-700"
+              className="text-xs font-semibold text-neutral-700 md:text-base"
             >
               {label}
             </Label>
@@ -34,7 +34,10 @@ const FormInput = forwardRef<HTMLInputElement, IFormInputProps>(
             disabled={pending || disabled}
             ref={ref}
             name={id}
-            className={cn("text-sm px-2 py-1 h-7", className)}
+            className={cn(
+              "text-sm px-2 py-1 md:text-base md:py-3 md:px-3",
+              className
+            )}
             aria-describedby={`${id}-error`}
           />
         </div>
