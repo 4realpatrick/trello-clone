@@ -79,6 +79,7 @@ const FormPicker: React.FC<IFormPickerProps> = ({ id, errors }) => {
               value={`${img.id}|${img.urls.thumb}|${img.urls.full}|${img.links.html}|${img.user.name}`}
             />
             <Image
+              sizes="(min-width: 768px) 45px 25px, (max-width: 1200px) 90px 50px"
               fill
               alt="Unsplash image"
               className="object-cover rounded-sm"
