@@ -9,6 +9,7 @@ interface IUseActionOptions<TOutput> {
   onSuccess?: (data: TOutput) => void;
   onError?: (error: string) => void;
   onComplete?: () => void;
+  onFieldError?: (error: FieldErrors<any>) => void;
 }
 
 export const useAction = <TInput, TOutput>(
@@ -33,6 +34,9 @@ export const useAction = <TInput, TOutput>(
           return;
         }
         setFieldErrors(result.fieldErrors);
+        if (result.fieldErrors) {
+          options.onFieldError?.(result.fieldErrors);
+        }
         if (result.error) {
           setError(result.error);
           options.onError?.(result.error);
