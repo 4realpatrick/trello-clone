@@ -5,11 +5,13 @@ import Hint from "@/components/hint";
 import { Button } from "@/components/ui/button";
 import { updateBoard } from "@/actions/update-board";
 import { toast } from "sonner";
+import { ArrowBigLeft } from "lucide-react";
 // Constant
 import { REGULAR_TYPE_TIME } from "@/constant/time";
 // Hooks
 import { useAction } from "@/hooks/use-action";
 import { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 // Types
 import type { ElementRef } from "react";
 import { Board } from "@prisma/client";
@@ -19,6 +21,7 @@ interface IBoardTitleFormProps {
 const BoardTitleForm: React.FC<IBoardTitleFormProps> = ({ data }) => {
   const [title, setTitle] = useState(data.title);
   const formRef = useRef<ElementRef<"form">>(null);
+  const router = useRouter();
   const { execute, isLoading } = useAction(updateBoard, {
     onSuccess(res) {
       setTitle(res.title);
@@ -67,20 +70,27 @@ const BoardTitleForm: React.FC<IBoardTitleFormProps> = ({ data }) => {
     );
   }
   return (
-    <Hint
-      descrption="Double click to edit"
-      side="bottom"
-      sideOffset={5}
-      asChild
-    >
-      <Button
-        className="font-bold text-lg h-auto w-auto p-1 px-2"
-        variant="glass"
-        onDoubleClick={() => setIsEditing(true)}
-      >
-        {title}
-      </Button>
-    </Hint>
+    <>
+      <Hint descrption="Go back" sideOffset={5} asChild>
+        <Button
+          variant="glass"
+          className="group"
+          size="sm"
+          onClick={() => router.back()}
+        >
+          <ArrowBigLeft className="group-hover:text-primary" />
+        </Button>
+      </Hint>
+      <Hint descrption="Double click to edit" sideOffset={5} asChild>
+        <Button
+          className="font-bold text-lg h-auto w-auto p-1 px-2"
+          variant="glass"
+          onDoubleClick={() => setIsEditing(true)}
+        >
+          {title}
+        </Button>
+      </Hint>
+    </>
   );
 };
 
