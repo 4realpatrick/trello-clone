@@ -61,8 +61,8 @@ const Sidebar: React.FC<ISidebarProps> = ({
   }
   return (
     <>
-      <div className="font-medium text-xs flex items-center mb-1">
-        <span className="pl-4">Workspaces</span>
+      <div className="font-medium text-xs flex items-center mb-1 select-none">
+        <span className="pl-4 md:text-lg text-xl text-primary">Workspaces</span>
         <Button
           asChild
           type="button"
@@ -71,7 +71,7 @@ const Sidebar: React.FC<ISidebarProps> = ({
           className="ml-auto"
         >
           <Link href="/select-org">
-            <Plus className="w-4 h-4" />
+            <Plus className="md:size-4 size-6 text-primary" />
           </Link>
         </Button>
       </div>
