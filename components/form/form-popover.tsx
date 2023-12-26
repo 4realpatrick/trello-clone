@@ -18,8 +18,8 @@ import { useRef } from "react";
 import { useRouter } from "next/navigation";
 // Server action
 import { createBoard } from "@/actions/create-board";
-// Function
-import dayjs from "dayjs";
+// Constant
+import { REGULAR_TYPE_TIME } from "@/constant/time";
 // Types
 import type { ElementRef } from "react";
 interface IFormPopverProps {
@@ -41,7 +41,7 @@ const FormPopover: React.FC<IFormPopverProps> = ({
       closeRef.current?.click();
       toast.success("Board created", {
         duration: 3000,
-        description: dayjs().format("dddd, MMMM D, YYYY h:mm A"),
+        description: REGULAR_TYPE_TIME,
         onAutoClose(toast) {
           router.push(`/board/${data.id}`);
         },
