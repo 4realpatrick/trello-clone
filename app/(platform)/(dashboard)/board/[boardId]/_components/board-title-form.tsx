@@ -74,7 +74,7 @@ const BoardTitleForm: React.FC<IBoardTitleFormProps> = ({ data }) => {
       <Hint descrption="Go back" sideOffset={5} asChild>
         <Button
           variant="glass"
-          className="group"
+          className="group text-foreground"
           size="sm"
           onClick={() => router.back()}
         >
@@ -83,7 +83,7 @@ const BoardTitleForm: React.FC<IBoardTitleFormProps> = ({ data }) => {
       </Hint>
       <Hint descrption="Double click to edit" sideOffset={5} asChild>
         <Button
-          className="font-bold text-lg h-auto w-auto p-1 px-2"
+          className="font-bold text-lg h-auto w-auto p-1 px-2 text-foreground hover:text-primary"
           variant="glass"
           onDoubleClick={() => setIsEditing(true)}
         >
