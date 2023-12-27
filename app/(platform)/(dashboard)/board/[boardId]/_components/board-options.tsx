@@ -8,7 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { MoreHorizontal, X } from "lucide-react";
+import { MoreHorizontal, X, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 // Server action
 import { deleteBoard } from "@/actions/delete-board";
@@ -66,6 +66,7 @@ const BoardOptions: React.FC<IBoardOptionsProps> = ({ id }) => {
               className="rounded-none w-full h-auto p-2 px-5 justify-start font-normal text-sm hover:text-rose-500"
               disabled={isLoading}
             >
+              <Trash2 className="size-4 mr-2" />
               Delete this board
             </Button>
           </Confirm>
