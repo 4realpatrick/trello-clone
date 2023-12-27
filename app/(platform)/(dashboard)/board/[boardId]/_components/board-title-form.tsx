@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 import { updateBoard } from "@/actions/update-board";
 import { toast } from "sonner";
 import { ArrowBigLeft } from "lucide-react";
-// Constant
-import { REGULAR_TYPE_TIME } from "@/constant/time";
+// Function
+import getRegularTime from "@/lib/get-regular-time";
 // Hooks
 import { useAction } from "@/hooks/use-action";
 import { useRef, useState } from "react";
@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 // Types
 import type { ElementRef } from "react";
 import { Board } from "@prisma/client";
+
 interface IBoardTitleFormProps {
   data: Board;
 }
@@ -26,13 +27,11 @@ const BoardTitleForm: React.FC<IBoardTitleFormProps> = ({ data }) => {
     onSuccess(res) {
       setTitle(res.title);
       toast.success(`Board "${res.title}" updated!`, {
-        description: REGULAR_TYPE_TIME,
+        description: getRegularTime(),
       });
     },
     onError(error) {
-      toast.error(error, {
-        description: REGULAR_TYPE_TIME,
-      });
+      toast.error(error);
       setTitle(data.title);
     },
     onFieldError(error) {

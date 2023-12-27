@@ -18,8 +18,8 @@ import { useRef } from "react";
 import { useRouter } from "next/navigation";
 // Server action
 import { createBoard } from "@/actions/create-board";
-// Constant
-import { REGULAR_TYPE_TIME } from "@/constant/time";
+// Function
+import getRegularTime from "@/lib/get-regular-time";
 // Types
 import type { ElementRef } from "react";
 interface IFormPopverProps {
@@ -41,7 +41,7 @@ const FormPopover: React.FC<IFormPopverProps> = ({
       closeRef.current?.click();
       toast.success("Board created", {
         duration: 3000,
-        description: REGULAR_TYPE_TIME,
+        description: getRegularTime(),
         onAutoClose(toast) {
           router.push(`/board/${data.id}`);
         },

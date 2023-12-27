@@ -1,23 +1,24 @@
 "use client";
+// Cmp
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import FormPicker from "./form-picker";
-import { useAction } from "@/hooks/use-action";
-import { createBoard } from "@/actions/create-board";
 import { toast } from "sonner";
-import { REGULAR_TYPE_TIME } from "@/constant/time";
-import { useRouter } from "next/navigation";
 import FormInput from "./form-input";
 import FormSubmit from "./form-submit";
+// Hooks
+import { useAction } from "@/hooks/use-action";
+import { useRouter } from "next/navigation";
+// Server action
+import { createBoard } from "@/actions/create-board";
+// Function
+import getRegularTime from "@/lib/get-regular-time";
 
 interface IFormDialogProps {
   children: React.ReactNode;
@@ -28,7 +29,7 @@ const FormDialog: React.FC<IFormDialogProps> = ({ children }) => {
     onSuccess(data) {
       toast.success("Board created", {
         duration: 3000,
-        description: REGULAR_TYPE_TIME,
+        description: getRegularTime(),
         onAutoClose(toast) {
           router.push(`/board/${data.id}`);
         },

@@ -13,15 +13,17 @@ import { useParams, useRouter } from "next/navigation";
 import { useAction } from "@/hooks/use-action";
 // Server action
 import { createList } from "@/actions/create-list";
-import { REGULAR_TYPE_TIME } from "@/constant/time";
+// Function
+import getRegularTime from "@/lib/get-regular-time";
 // Types
 import type { ElementRef } from "react";
+
 const ListForm = () => {
   const router = useRouter();
   const { execute, fieldErrors, resetError } = useAction(createList, {
     onSuccess(data) {
       toast.success(`List ${data.title} created`, {
-        description: REGULAR_TYPE_TIME,
+        description: getRegularTime(),
       });
       disabledEditing();
       router.refresh();

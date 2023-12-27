@@ -8,8 +8,8 @@ import { useEventListener } from "usehooks-ts";
 import { useAction } from "@/hooks/use-action";
 // Server action
 import { updateList } from "@/actions/update-list";
-// Constant
-import { REGULAR_TYPE_TIME } from "@/constant/time";
+// Function
+import getRegularTime from "@/lib/get-regular-time";
 // Types
 import { List } from "@prisma/client";
 import type { ElementRef } from "react";
@@ -21,7 +21,7 @@ const ListHeader: React.FC<IListHeaderProps> = ({ data }) => {
   const { execute, resetError, isLoading } = useAction(updateList, {
     onSuccess(data) {
       toast.success(`Rename to "${data.title}" successfully`, {
-        description: REGULAR_TYPE_TIME,
+        description: getRegularTime(),
       });
       setTitle(data.title);
       disableEditing();
