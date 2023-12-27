@@ -1,7 +1,7 @@
 "use client";
 // Cmp
 import { Button } from "@/components/ui/button";
-import ListWrapper from "../list-wrapper";
+import ListWrapper from "./list-wrapper";
 import { Plus, X } from "lucide-react";
 import { toast } from "sonner";
 import FormInput from "@/components/form/form-input";
