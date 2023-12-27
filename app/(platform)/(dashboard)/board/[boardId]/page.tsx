@@ -34,7 +34,6 @@ const BoardIdPage = async ({ params: { boardId } }: IBoardIdPageProps) => {
       order: "asc",
     },
   });
-  console.log("data:", lists);
 
   return (
     <div className="p-4 h-full overflow-x-auto">
