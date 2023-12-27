@@ -2,6 +2,7 @@
 // Cmp
 import FormInput from "@/components/form/form-input";
 import { toast } from "sonner";
+import ListOptions from "./list-options";
 // Hooks
 import { useState, useRef, useEffect } from "react";
 import { useEventListener } from "usehooks-ts";
@@ -100,6 +101,7 @@ const ListHeader: React.FC<IListHeaderProps> = ({ data }) => {
           {data.title}
         </div>
       )}
+      <ListOptions onAddCard={() => {}} data={data} />
     </div>
   );
 };
