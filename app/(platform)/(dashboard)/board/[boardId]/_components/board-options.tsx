@@ -8,7 +8,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { MoreHorizontal, X, Trash2 } from "lucide-react";
+import { Menu, X, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 // Server action
 import { deleteBoard } from "@/actions/delete-board";
@@ -31,8 +31,11 @@ const BoardOptions: React.FC<IBoardOptionsProps> = ({ id }) => {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button className="size-auto p-2" variant="glass">
-          <MoreHorizontal className="size-4 text-primary" />
+        <Button className="size-auto p-2 group" variant="glass">
+          <Menu
+            className="size-4 group-hover:!text-primary text-background group-hover/navbar:text-foreground"
+            strokeWidth={3}
+          />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="px-0 pt-3 pb-3" side="bottom" align="start">

@@ -63,7 +63,7 @@ const BoardTitleForm: React.FC<IBoardTitleFormProps> = ({ data }) => {
           id="title"
           value={title}
           onBlur={handleBlur}
-          className="text-lg font-bold px-[7px] py-1 h-7 bg-transparent focus-visible:outline-none focus-visible:ring-transparent border-none text-background"
+          className="text-lg font-bold px-[7px] py-1 h-7 bg-transparent focus-visible:outline-none focus-visible:ring-transparent border-none text-foreground"
         />
       </form>
     );
@@ -73,7 +73,7 @@ const BoardTitleForm: React.FC<IBoardTitleFormProps> = ({ data }) => {
       <Hint descrption="Go back" sideOffset={5} asChild>
         <Button
           variant="glass"
-          className="group text-foreground"
+          className="group text-background group-hover/navbar:text-foreground"
           size="sm"
           onClick={() => router.back()}
         >
@@ -82,7 +82,7 @@ const BoardTitleForm: React.FC<IBoardTitleFormProps> = ({ data }) => {
       </Hint>
       <Hint descrption="Double click to edit" sideOffset={5} asChild>
         <Button
-          className="font-bold text-lg h-auto w-auto p-1 px-2 text-foreground hover:text-primary"
+          className="font-bold text-lg h-auto w-auto p-1 px-2 text-background hover:!text-primary group-hover/navbar:text-foreground"
           variant="glass"
           onDoubleClick={() => setIsEditing(true)}
         >
