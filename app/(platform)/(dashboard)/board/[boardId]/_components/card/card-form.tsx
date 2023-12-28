@@ -27,10 +27,12 @@ const CardForm = forwardRef<HTMLTextAreaElement, ICardFormProps>(
     const params = useParams();
     const formRef = useRef<ElementRef<"form">>(null);
     const { execute, resetError, fieldErrors } = useAction(createCard, {
-      onSuccess: () =>
+      onSuccess: () => {
         toast.success(`Card created`, {
           description: getRegularTime(),
         }),
+          disableEditing();
+      },
       onError: toast.error,
     });
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -71,7 +73,7 @@ const CardForm = forwardRef<HTMLTextAreaElement, ICardFormProps>(
             name="title"
             id="title"
             onKeyDown={handleTextareaKeyDown}
-            placeholder="Enter a title for this card"
+            placeholder="Enter a title for this card..."
             errors={fieldErrors}
           />
           <input hidden id="listId" name="listId" value={listId} readOnly />
