@@ -48,7 +48,6 @@ const handler = async (data: TInputType): Promise<TReturnType> => {
       },
     });
     const newOrder = lastList ? lastList.order : 1;
-    console.log(listToCopy, newOrder);
 
     if (listToCopy.cards.length) {
       list = await db.list.create({
