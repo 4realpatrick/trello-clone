@@ -6,8 +6,8 @@ export const CreateCard = z.object({
       required_error: "Title is required",
       invalid_type_error: "Title is required",
     })
-    .min(3, {
-      message: "Title is too short",
+    .min(1, {
+      message: "Title is required",
     })
     .max(100, {
       message: "Title only accept up to 100 chars",
