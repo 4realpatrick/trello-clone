@@ -3,6 +3,7 @@
 import FormInput from "@/components/form/form-input";
 import { toast } from "sonner";
 import ListOptions from "./list-options";
+import Hint from "@/components/hint";
 // Hooks
 import { useState, useRef, useEffect } from "react";
 import { useEventListener } from "usehooks-ts";
@@ -16,9 +17,10 @@ import { List } from "@prisma/client";
 import type { ElementRef } from "react";
 interface IListHeaderProps {
   data: List;
+  onAddCard: () => void;
 }
 
-const ListHeader: React.FC<IListHeaderProps> = ({ data }) => {
+const ListHeader: React.FC<IListHeaderProps> = ({ data, onAddCard }) => {
   const { execute, resetError, isLoading } = useAction(updateList, {
     onSuccess(data) {
       toast.success(`Rename to "${data.title}" successfully`, {
@@ -73,7 +75,7 @@ const ListHeader: React.FC<IListHeaderProps> = ({ data }) => {
   return (
     <div className="pt-2 px-2 text-sm font-semibold flex justify-between items-start gap-x-2">
       {isEditing ? (
-        <form className="flex-1 py-[-6px]" action={handleSubmit} ref={formRef}>
+        <form className="py-[-6px] w-full" action={handleSubmit} ref={formRef}>
           <input hidden id="id" name="id" value={data.id} readOnly />
           <input
             hidden
@@ -89,19 +91,21 @@ const ListHeader: React.FC<IListHeaderProps> = ({ data }) => {
             id="title"
             placeholder="Enter list title.."
             defaultValue={title}
-            className="text-sm px-[7px] py-1 font-medium border-transparent hover:border-input focus:border-input transition truncate bg-transparent focus:bg-background h-6"
+            className="!text-sm px-[7px] py-1 font-medium border-transparent hover:border-input focus:border-input transition truncate bg-transparent focus:bg-background h-6 w-full"
           />
           <button hidden type="submit" />
         </form>
       ) : (
-        <div
-          className="w-full text-sm px-2.5 py-1 h-6 font-medium border-transparent text-primary-foreground cursor-pointer truncate"
-          onClick={enableEditing}
-        >
-          {data.title}
-        </div>
+        <Hint descrption="Click to change title" align="start" asChild>
+          <div
+            className="w-full text-sm px-2.5 py-1 h-6 font-medium border-transparent text-primary-foreground cursor-pointer truncate"
+            onClick={enableEditing}
+          >
+            {data.title}
+          </div>
+        </Hint>
       )}
-      <ListOptions onAddCard={() => {}} data={data} />
+      <ListOptions onAddCard={onAddCard} data={data} />
     </div>
   );
 };
