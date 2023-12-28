@@ -11,6 +11,7 @@ interface IHintProps {
   side?: "left" | "right" | "top" | "bottom";
   sideOffset?: number;
   asChild?: boolean;
+  align?: "center" | "end" | "start";
 }
 const Hint: React.FC<IHintProps> = ({
   children,
@@ -18,6 +19,7 @@ const Hint: React.FC<IHintProps> = ({
   side = "bottom",
   sideOffset = 0,
   asChild = false,
+  align = "center",
 }) => {
   return (
     <TooltipProvider>
@@ -26,6 +28,7 @@ const Hint: React.FC<IHintProps> = ({
         <TooltipContent
           sideOffset={sideOffset}
           side={side}
+          align={align}
           className="text-xs max-w-[200px] break-words"
         >
           {descrption}
