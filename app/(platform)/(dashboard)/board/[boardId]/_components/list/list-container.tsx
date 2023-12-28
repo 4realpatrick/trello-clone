@@ -14,6 +14,7 @@ import { useAction } from "@/hooks/use-action";
 import { updateListOrder } from "@/actions/update-list-order";
 import { toast } from "sonner";
 import getRegularTime from "@/lib/get-regular-time";
+import { updateCardOrder } from "@/actions/update-card-order";
 interface IListContainerProps {
   data: TListWithCards[];
   boardId: string;
@@ -22,6 +23,9 @@ interface IListContainerProps {
 const ListContainer: React.FC<IListContainerProps> = ({ data, boardId }) => {
   const [orderedList, setOrderedList] = useState(data);
   const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
+    onError: toast.error,
+  });
+  const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
     onError: toast.error,
   });
   const handleDragEnd = (result: DropResult) => {
@@ -76,6 +80,7 @@ const ListContainer: React.FC<IListContainerProps> = ({ data, boardId }) => {
         }));
         sourceList.cards = reorderedCards;
         setOrderedList(newOrderedList);
+        executeUpdateCardOrder({ items: reorderedCards, boardId });
       } else {
         // 非同源list中移动card
         const [moveCard] = sourceList.cards.splice(source.index, 1);
@@ -88,6 +93,10 @@ const ListContainer: React.FC<IListContainerProps> = ({ data, boardId }) => {
           card.order = index;
         });
         setOrderedList(newOrderedList);
+        executeUpdateCardOrder({
+          items: destList.cards,
+          boardId,
+        });
       }
     }
   };
