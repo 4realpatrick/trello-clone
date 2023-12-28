@@ -2,6 +2,7 @@
 // Cmp
 import Confirm from "@/components/confirm";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverClose,
@@ -16,20 +17,30 @@ import { deleteBoard } from "@/actions/delete-board";
 import { useAction } from "@/hooks/use-action";
 
 //Types
+import { ChangeEventHandler, useState } from "react";
 interface IBoardOptionsProps {
   id: string;
+  title: string;
 }
-const BoardOptions: React.FC<IBoardOptionsProps> = ({ id }) => {
+const BoardOptions: React.FC<IBoardOptionsProps> = ({ id, title }) => {
+  const [confirmTitle, setConfirmTitle] = useState("");
   const { execute, isLoading } = useAction(deleteBoard, {
     onError(error) {
       toast.error(error);
     },
   });
+  const handleTitleChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setConfirmTitle(e.target.value);
+  };
   const onDelete = () => {
+    if (confirmTitle !== title) {
+      toast.error("Input board title doesn't match");
+      return;
+    }
     execute({ id });
   };
   return (
-    <Popover>
+    <Popover onOpenChange={() => setConfirmTitle("")}>
       <PopoverTrigger asChild>
         <Button className="size-auto p-2 group" variant="glass">
           <Menu
@@ -53,8 +64,27 @@ const BoardOptions: React.FC<IBoardOptionsProps> = ({ id }) => {
         <div className="mt-2">
           <Confirm
             title="Are you sure?"
-            description="This action cannot be undone. This will permanently delete your
-            board and remove your data from our servers."
+            customDescription={
+              <>
+                <div className="bg-rose-200 text-rose-500 p-3 rounded-sm text-sm">
+                  <span className="text-rose-700 mr-1">Warning:</span>
+                  This action is not reversible. This will permanently delete
+                  your board and remove your data from our servers.
+                </div>
+                <div className="mt-3 text-sm">
+                  Enter the board name{" "}
+                  <span className="font-extrabold text-rose-500 px-1">
+                    {title}
+                  </span>{" "}
+                  to delete this permanently
+                </div>
+                <Input
+                  className="mt-2"
+                  value={confirmTitle}
+                  onChange={handleTitleChange}
+                />
+              </>
+            }
             confirmEle={
               <Button
                 className="bg-rose-500 hover:bg-rose-400"

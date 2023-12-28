@@ -17,6 +17,7 @@ interface IConfirmProps {
   children: React.ReactNode;
   title: string;
   description?: string;
+  customDescription?: string | JSX.Element;
   confirmEle: JSX.Element;
   type?: "error" | "warn" | "success" | "info" | "loading";
 }
@@ -52,6 +53,7 @@ const Confirm: React.FC<IConfirmProps> = ({
   children,
   title,
   description,
+  customDescription,
   confirmEle,
   type = "error",
 }) => {
@@ -68,6 +70,7 @@ const Confirm: React.FC<IConfirmProps> = ({
           {description && (
             <AlertDialogDescription>{description}</AlertDialogDescription>
           )}
+          {customDescription}
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>

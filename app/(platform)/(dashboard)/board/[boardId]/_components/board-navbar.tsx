@@ -12,7 +12,7 @@ const BoardNavbar = ({ data }: IBoardNavbarProps) => {
     <div className="w-full h-14 z-[40] bg-foreground/20 fixed top-14 flex items-center gap-y-4 text-foreground pr-6 hover:bg-background transition group/navbar">
       <BoardTitleForm data={data} />
       <div className="ml-auto">
-        <BoardOptions id={data.id} />
+        <BoardOptions id={data.id} title={data.title} />
       </div>
     </div>
   );
