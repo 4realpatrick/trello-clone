@@ -50,26 +50,39 @@ const handler = async (data: TInputType): Promise<TReturnType> => {
     const newOrder = lastList ? lastList.order : 1;
     console.log(listToCopy, newOrder);
 
-    list = await db.list.create({
-      data: {
-        title: `${listToCopy.title} - Copy`,
-        boardId: listToCopy.boardId,
-        order: newOrder,
-      },
-      include: {
-        cards: true,
-      },
-    });
-    // if (listToCopy.cards.length) {
-    //   card = await db.card.createMany({
-    //     data: listToCopy.cards.map((card) => ({
-    //       title: card.title,
-    //       description: card.description,
-    //       order: card.order,
-    //       listId: list.id
-    //     }))
-    //   })
-    // }
+    if (listToCopy.cards.length) {
+      list = await db.list.create({
+        data: {
+          boardId: listToCopy.boardId,
+          title: `${listToCopy.title} - Copy`,
+          order: newOrder,
+          cards: {
+            createMany: {
+              data: listToCopy.cards.map((card) => ({
+                title: card.title,
+                description: card.description,
+                order: card.order,
+              })),
+            },
+          },
+        },
+        include: {
+          cards: true,
+        },
+      });
+    } else {
+      list = await db.list.create({
+        data: {
+          boardId: listToCopy.boardId,
+          title: `${listToCopy.title} - Copy`,
+          order: newOrder,
+          cards: undefined,
+        },
+        include: {
+          cards: true,
+        },
+      });
+    }
   } catch (error) {
     console.log("Internal Error Found in copy-list", error);
     return {
