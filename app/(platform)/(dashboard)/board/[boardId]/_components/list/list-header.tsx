@@ -96,14 +96,13 @@ const ListHeader: React.FC<IListHeaderProps> = ({ data, onAddCard }) => {
           <button hidden type="submit" />
         </form>
       ) : (
-        <Hint descrption="Click to change title" align="start" asChild>
-          <div
-            className="w-full text-sm px-2.5 py-1 h-6 font-medium border-transparent text-primary-foreground cursor-pointer truncate"
-            onClick={enableEditing}
-          >
-            {data.title}
-          </div>
-        </Hint>
+        <div className="w-full text-sm px-2.5 py-1 h-6 font-medium border-transparent text-primary-foreground truncate">
+          <Hint descrption="Click to change title" align="start" asChild>
+            <span className="cursor-pointer" onClick={enableEditing}>
+              {data.title}
+            </span>
+          </Hint>
+        </div>
       )}
       <ListOptions onAddCard={onAddCard} data={data} />
     </div>
