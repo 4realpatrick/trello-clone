@@ -10,6 +10,10 @@ import reorder from "@/lib/reorder";
 // Types
 import type { TListWithCards } from "@/types";
 import type { DropResult } from "@hello-pangea/dnd";
+import { useAction } from "@/hooks/use-action";
+import { updateListOrder } from "@/actions/update-list-order";
+import { toast } from "sonner";
+import getRegularTime from "@/lib/get-regular-time";
 interface IListContainerProps {
   data: TListWithCards[];
   boardId: string;
@@ -17,6 +21,9 @@ interface IListContainerProps {
 
 const ListContainer: React.FC<IListContainerProps> = ({ data, boardId }) => {
   const [orderedList, setOrderedList] = useState(data);
+  const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
+    onError: toast.error,
+  });
   const handleDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;
     // Unknown error
@@ -35,6 +42,7 @@ const ListContainer: React.FC<IListContainerProps> = ({ data, boardId }) => {
         (item, index) => ({ ...item, order: index })
       );
       setOrderedList(items);
+      executeUpdateListOrder({ items, boardId });
     }
     if (type === "card") {
       let newOrderedList = [...orderedList];
