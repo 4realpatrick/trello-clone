@@ -93,7 +93,7 @@ const FormPicker: React.FC<IFormPickerProps> = ({ id, errors }) => {
             <Link
               href={img.links.html}
               target="_blank"
-              className="opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate hover:underline p-1 bg-background/50 text-primary md:text-base"
+              className="opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate hover:underline p-1 bg-background/50 text-primary text-xs"
             >
               {img.user.name}
             </Link>
