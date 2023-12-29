@@ -68,24 +68,27 @@ enum ENTITY_TYPE {
 }
 
 model AuditLog {
-  id          String      @id @default(auto()) @map("_id") @db.ObjectId
-  orgId       String
-  action      ACTION
-  entityId    String
-  entityType  ENTITY_TYPE
-  entityTitle String
-  createFrom  String?
-  copyFrom    String?
-  copyTo      String?
-  deleteFrom  String?
-  updateFrom  String?
-  moveFrom    String?
-  moveTo      String?
-  userId      String
-  userImage   String
-  userName    String
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  orgId           String
+  action          ACTION
+  entityId        String
+  entityType      ENTITY_TYPE
+  entityTitle     String
+  entityTitleFrom String?
+  entityDesc      String?
+  entityDescFrom  String?
+  createFrom      String?
+  copyFrom        String?
+  copyTo          String?
+  deleteFrom      String?
+  updateFrom      String?
+  moveFrom        String?
+  moveTo          String?
+  userId          String
+  userImage       String
+  userName        String
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
 }
 
 model OrgLimit {

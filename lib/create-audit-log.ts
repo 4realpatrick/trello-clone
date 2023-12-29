@@ -6,6 +6,9 @@ interface IProps {
   entityId: string;
   entityType: ENTITY_TYPE;
   entityTitle: string;
+  entityTitleFrom?: string | null;
+  entityDesc?: string | null;
+  entityDescFrom?: string | null;
   action: ACTION;
   createFrom?: string;
   copyFrom?: string;
