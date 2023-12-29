@@ -49,6 +49,8 @@ const Header: React.FC<IHeaderProps> & { Skeleton: React.FC } = ({ data }) => {
       return;
     }
     execute({
+      description: data.description || undefined,
+      originalDescription: data.description,
       originalTitle: data.title,
       title,
       boardId,

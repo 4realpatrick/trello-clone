@@ -65,6 +65,8 @@ const Description: React.FC<IDescriptionProps> & { Skeleton: React.FC } = ({
       disableEditing();
     }
     execute({
+      originalTitle: data.title,
+      title: data.title,
       originalDescription: data.description,
       id: data.id,
       description,
