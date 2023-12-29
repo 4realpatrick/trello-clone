@@ -7,14 +7,13 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const ActivityList = async () => {
-  const userAuth = auth();
-  console.log("orgPermissions:", userAuth);
-  if (!userAuth.orgId) {
+  const { orgId, orgRole } = auth();
+  if (!orgId) {
     redirect("/select-org");
   }
   const auditLogs = await db.auditLog.findMany({
     where: {
-      orgId: userAuth.orgId,
+      orgId,
     },
     orderBy: {
       createdAt: "desc",
