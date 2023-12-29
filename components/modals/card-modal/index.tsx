@@ -10,7 +10,9 @@ import { useQuery } from "@tanstack/react-query";
 // Utils
 import { fetcher } from "@/lib/fetcher";
 // Types
-import { TCardWithList } from "@/types";
+import type { TCardWithList } from "@/types";
+import type { AuditLog } from "@prisma/client";
+import Activity from "./activity";
 const CardModal: React.FC = () => {
   const id = useCardModal((s) => s.id);
   const isOpen = useCardModal((s) => s.isOpen);
@@ -18,6 +20,11 @@ const CardModal: React.FC = () => {
   const { data: cardData } = useQuery<TCardWithList>({
     queryKey: ["card", id],
     queryFn: () => fetcher(`/api/cards/${id}`),
+    enabled: !!id,
+  });
+  const { data: auditLogsData } = useQuery<AuditLog[]>({
+    queryKey: ["card-logs", id],
+    queryFn: () => fetcher(`/api/cards/${id}/logs`),
     enabled: !!id,
   });
   return (
@@ -31,6 +38,11 @@ const CardModal: React.FC = () => {
                 <Description data={cardData} />
               ) : (
                 <Description.Skeleton />
+              )}
+              {auditLogsData ? (
+                <Activity items={auditLogsData} />
+              ) : (
+                <Activity.Skeleton />
               )}
             </div>
           </div>
