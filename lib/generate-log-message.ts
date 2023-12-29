@@ -36,11 +36,11 @@ export const generateLogMessage = (log: AuditLog) => {
       return updateResult;
     case ACTION.DELETE:
       if (entityType === "BOARD") {
-        return `delete ${entityType.toLocaleLowerCase()} "${entityTitle}" at organization "${createFrom}"`;
+        return `delete ${entityType.toLocaleLowerCase()} "${entityTitle}" at organization "${deleteFrom}"`;
       } else if (entityType === "LIST") {
-        return `delete ${entityType.toLocaleLowerCase()} "${entityTitle}" at board "${createFrom}"`;
+        return `delete ${entityType.toLocaleLowerCase()} "${entityTitle}" at board "${deleteFrom}"`;
       } else {
-        return `delete ${entityType.toLocaleLowerCase()} "${entityTitle}" at list "${createFrom}"`;
+        return `delete ${entityType.toLocaleLowerCase()} "${entityTitle}" at list "${deleteFrom}"`;
       }
     case ACTION.COPY:
     case ACTION.MOVE:
