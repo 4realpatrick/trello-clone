@@ -57,6 +57,8 @@ enum ACTION {
   CREATE
   UPDATE
   DELETE
+  COPY
+  MOVE
 }
 
 enum ENTITY_TYPE {
@@ -72,6 +74,13 @@ model AuditLog {
   entityId    String
   entityType  ENTITY_TYPE
   entityTitle String
+  createFrom  String?
+  copyFrom    String?
+  copyTo      String?
+  deleteFrom  String?
+  updateFrom  String?
+  moveFrom    String?
+  moveTo      String?
   userId      String
   userImage   String
   userName    String

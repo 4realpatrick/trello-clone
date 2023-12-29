@@ -7,6 +7,13 @@ interface IProps {
   entityType: ENTITY_TYPE;
   entityTitle: string;
   action: ACTION;
+  createFrom?: string;
+  copyFrom?: string;
+  copyTo?: string;
+  deleteFrom?: string;
+  updateFrom?: string;
+  moveFrom?: string;
+  moveTo?: string;
 }
 
 export const createAuditLog = async (props: IProps) => {
@@ -16,14 +23,10 @@ export const createAuditLog = async (props: IProps) => {
     if (!user || !orgId) {
       throw new Error("User not found");
     }
-    const { entityId, entityTitle, entityType, action } = props;
     await db.auditLog.create({
       data: {
+        ...props,
         orgId,
-        entityId,
-        entityTitle,
-        entityType,
-        action,
         userId: user.id,
         userImage: user.imageUrl,
         userName:
