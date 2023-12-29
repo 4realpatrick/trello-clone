@@ -1,7 +1,10 @@
 "use client";
 // Cmp
-import { Check, Loader2 } from "lucide-react";
+import { Check, Loader2, Shuffle } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import FormErrors from "./form-errors";
+import Hint from "../hint";
 // Hooks
 import { useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
@@ -9,9 +12,8 @@ import { useFormStatus } from "react-dom";
 import { cn } from "@/lib/utils";
 // Api
 import { unsplash } from "@/lib/unsplash";
+// Constant
 import { defaultImages } from "@/constant/images";
-import Link from "next/link";
-import FormErrors from "./form-errors";
 // Types
 interface IFormPickerProps {
   id: string;
@@ -22,27 +24,28 @@ const FormPicker: React.FC<IFormPickerProps> = ({ id, errors }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImageId, setSelectImageId] = useState(null);
   const { pending } = useFormStatus();
-
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const result = await unsplash.photos.getRandom({
-          collectionIds: ["317099"],
-          count: 9,
-        });
-        if (result && result.response) {
-          const newImages = result.response as Array<Record<string, any>>;
-          setImages(newImages);
-        } else {
-          console.error("Failed to get images from Unsplash");
-        }
-      } catch (error) {
-        console.log(error);
-        setImages(defaultImages);
-      } finally {
-        setIsLoading(false);
+  const fetchImages = async () => {
+    setSelectImageId(null);
+    setIsLoading(true);
+    try {
+      const result = await unsplash.photos.getRandom({
+        collectionIds: ["317099"],
+        count: 9,
+      });
+      if (result && result.response) {
+        const newImages = result.response as Array<Record<string, any>>;
+        setImages(newImages);
+      } else {
+        console.error("Failed to get images from Unsplash");
       }
-    };
+    } catch (error) {
+      console.log(error);
+      setImages(defaultImages);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  useEffect(() => {
     fetchImages();
   }, []);
   if (isLoading) {
@@ -71,7 +74,7 @@ const FormPicker: React.FC<IFormPickerProps> = ({ id, errors }) => {
             <input
               readOnly
               type="radio"
-              id={id}
+              id={img.id}
               name={id}
               className="hidden"
               checked={selectedImageId === img.id}
@@ -100,6 +103,15 @@ const FormPicker: React.FC<IFormPickerProps> = ({ id, errors }) => {
           </div>
         ))}
       </div>
+      <div className="flex justify-center">
+        <Hint descrption="Change current images">
+          <Shuffle
+            className="cursor-pointer text-foreground hover:text-primary hover:animate-spin"
+            onClick={fetchImages}
+          />
+        </Hint>
+      </div>
+
       <FormErrors errors={errors} id="image" />
     </div>
   );
