@@ -16,7 +16,14 @@ const handler = async (data: TInputType): Promise<TReturnType> => {
       error: "Unauthorized",
     };
   }
-  const { id, boardId, ...rest } = data;
+  const {
+    id,
+    boardId,
+    title,
+    description,
+    originalTitle,
+    originalDescription,
+  } = data;
   let card;
   try {
     card = await db.card.update({
@@ -29,15 +36,17 @@ const handler = async (data: TInputType): Promise<TReturnType> => {
         },
       },
       data: {
-        ...rest,
+        title,
+        description,
       },
     });
+
     await createAuditLog({
       entityId: card.id,
       entityTitle: card.title,
-      entityTitleFrom: rest.originalTitle,
+      entityTitleFrom: originalTitle,
       entityDesc: card.description,
-      entityDescFrom: rest.originalDescription,
+      entityDescFrom: originalDescription,
       entityType: ENTITY_TYPE.CARD,
       action: ACTION.UPDATE,
     });

@@ -10,7 +10,7 @@ import { createAuditLog } from "@/lib/create-audit-log";
 import { ACTION, ENTITY_TYPE } from "@prisma/client";
 
 const handler = async (data: TInputType): Promise<TReturnType> => {
-  const { userId, orgId, organization } = auth();
+  const { userId, orgId, orgSlug } = auth();
   if (!userId || !orgId) {
     return {
       error: "Unauthorized",
@@ -49,7 +49,7 @@ const handler = async (data: TInputType): Promise<TReturnType> => {
       entityTitle: board.title,
       entityType: ENTITY_TYPE.BOARD,
       action: ACTION.CREATE,
-      createFrom: organization?.name,
+      createFrom: orgSlug,
     });
   } catch (error) {
     console.log("Internal Error Found in create-board", error);
