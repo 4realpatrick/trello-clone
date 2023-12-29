@@ -25,6 +25,9 @@ const Header: React.FC<IHeaderProps> & { Skeleton: React.FC } = ({ data }) => {
       queryClient.invalidateQueries({
         queryKey: ["card", data.id],
       });
+      queryClient.invalidateQueries({
+        queryKey: ["card-logs", data.id],
+      });
       toast.success(`Renamed to "${data.title}"`, {
         description: getRegularTime(),
       });
