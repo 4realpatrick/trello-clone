@@ -49,6 +49,7 @@ const BoardTitleForm: React.FC<IBoardTitleFormProps> = ({ data }) => {
     if (title === data.title) return;
     const submitTitle = formData.get("title") as string;
     execute({
+      originalTitle: data.title,
       title: submitTitle,
       id: data.id,
     });

@@ -53,6 +53,7 @@ const ListOptions: React.FC<IListOptionsProps> = ({ data, onAddCard }) => {
     executeDelete({
       id,
       boardId,
+      boardTitle: data.title,
     });
     closeRef.current!.click();
   };

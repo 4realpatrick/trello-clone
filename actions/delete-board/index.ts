@@ -7,9 +7,11 @@ import { revalidatePath } from "next/cache";
 import { createSafeAction } from "@/lib/create-safe-action";
 import { DeleteBoard } from "./schema";
 import { redirect } from "next/navigation";
+import { createAuditLog } from "@/lib/create-audit-log";
+import { ACTION, ENTITY_TYPE } from "@prisma/client";
 
 const handler = async (data: TInputType): Promise<TReturnType> => {
-  const { userId, orgId } = auth();
+  const { userId, orgId, organization } = auth();
   if (!userId || !orgId) {
     return {
       error: "Unauthorized",
@@ -23,6 +25,13 @@ const handler = async (data: TInputType): Promise<TReturnType> => {
         id,
         orgId,
       },
+    });
+    await createAuditLog({
+      entityId: board.id,
+      entityTitle: board.title,
+      entityType: ENTITY_TYPE.BOARD,
+      action: ACTION.DELETE,
+      deleteFrom: organization?.name,
     });
   } catch (error) {
     console.log("Internal Error Found in delete-board", error);

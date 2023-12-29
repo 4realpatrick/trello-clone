@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const UpdateCard = z.object({
+  originalTitle: z.optional(z.string().nullable()),
   title: z.optional(
     z
       .string({
@@ -26,4 +27,5 @@ export const UpdateCard = z.object({
         message: "Description can not set up over 300 chats",
       })
   ),
+  originalDescription: z.optional(z.string().nullable()),
 });

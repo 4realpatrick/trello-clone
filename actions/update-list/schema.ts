@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const UpdateList = z.object({
+  originalTitle: z.string(),
   title: z
     .string({
       required_error: "Title is required",

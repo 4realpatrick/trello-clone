@@ -58,6 +58,7 @@ const Actions: React.FC<IActionsProps> & { Skeleton: React.FC } = ({
     const boardId = params.boardId as string;
     executeDeleteCard({
       id: data.id,
+      listTitle: data.list.title,
       boardId,
     });
   };

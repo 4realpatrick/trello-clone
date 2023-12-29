@@ -12,5 +12,6 @@ export const UpdateBoard = z.object({
     .max(20, {
       message: "Title only accept up to 20 chars",
     }),
+  originalTitle: z.string(),
   id: z.string(),
 });

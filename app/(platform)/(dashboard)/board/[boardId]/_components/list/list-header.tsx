@@ -61,6 +61,7 @@ const ListHeader: React.FC<IListHeaderProps> = ({ data, onAddCard }) => {
       return disableEditing();
     }
     execute({
+      originalTitle: data.title,
       title,
       id,
       boardId,

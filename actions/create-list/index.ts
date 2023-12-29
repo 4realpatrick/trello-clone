@@ -6,6 +6,8 @@ import { db } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 import { createSafeAction } from "@/lib/create-safe-action";
 import { CreateList } from "./schema";
+import { createAuditLog } from "@/lib/create-audit-log";
+import { ACTION, ENTITY_TYPE } from "@prisma/client";
 
 const handler = async (data: TInputType): Promise<TReturnType> => {
   const { userId, orgId } = auth();
@@ -45,6 +47,14 @@ const handler = async (data: TInputType): Promise<TReturnType> => {
         boardId,
         order: newListOrder,
       },
+    });
+
+    await createAuditLog({
+      entityId: list.id,
+      entityTitle: list.title,
+      entityType: ENTITY_TYPE.LIST,
+      action: ACTION.CREATE,
+      createFrom: board.title,
     });
   } catch (error) {
     console.log("Internal Error Found in create-board", error);
