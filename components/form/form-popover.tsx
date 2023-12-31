@@ -16,6 +16,7 @@ import FormPicker from "./form-picker";
 import { useAction } from "@/hooks/use-action";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
+import { useProModal } from "@/hooks/use-pro-modal";
 // Server action
 import { createBoard } from "@/actions/create-board";
 // Function
@@ -34,6 +35,7 @@ const FormPopover: React.FC<IFormPopverProps> = ({
   align,
   sideOffset = 0,
 }) => {
+  const proModal = useProModal();
   const closeRef = useRef<ElementRef<"button">>(null);
   const router = useRouter();
   const { execute, resetError, fieldErrors } = useAction(createBoard, {
@@ -49,6 +51,7 @@ const FormPopover: React.FC<IFormPopverProps> = ({
     },
     onError(error) {
       toast.error(error);
+      proModal.onOpen();
     },
   });
   const onSubmit = (formData: FormData) => {

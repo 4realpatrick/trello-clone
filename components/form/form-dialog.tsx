@@ -15,6 +15,7 @@ import FormSubmit from "./form-submit";
 // Hooks
 import { useAction } from "@/hooks/use-action";
 import { useRouter } from "next/navigation";
+import { useProModal } from "@/hooks/use-pro-modal";
 // Server action
 import { createBoard } from "@/actions/create-board";
 // Function
@@ -25,6 +26,7 @@ interface IFormDialogProps {
 }
 const FormDialog: React.FC<IFormDialogProps> = ({ children }) => {
   const router = useRouter();
+  const proModal = useProModal();
   const { execute, resetError, fieldErrors } = useAction(createBoard, {
     onSuccess(data) {
       toast.success("Board created", {
@@ -37,6 +39,7 @@ const FormDialog: React.FC<IFormDialogProps> = ({ children }) => {
     },
     onError(error) {
       toast.error(error);
+      proModal.onOpen();
     },
   });
   const onSubmit = (formData: FormData) => {
