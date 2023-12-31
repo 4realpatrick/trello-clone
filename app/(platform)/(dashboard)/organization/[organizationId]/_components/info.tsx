@@ -5,10 +5,14 @@ import { Skeleton } from "@/components/ui/skeleton";
 import Image from "next/image";
 // Hooks
 import { useOrganization } from "@clerk/nextjs";
+// Utils
+import { cn } from "@/lib/utils";
 
-interface IInfoProps {}
+interface IInfoProps {
+  isPro: boolean;
+}
 
-const Info = () => {
+const Info: React.FC<IInfoProps> = ({ isPro }) => {
   const { organization, isLoaded } = useOrganization();
   if (!isLoaded) {
     return <InfoSkeleton />;
@@ -27,9 +31,14 @@ const Info = () => {
       </div>
       <div className="space-y-1">
         <p className="font-semibold text-xl">{organization?.name}</p>
-        <div className="flex items-center text-xs text-muted-foreground">
+        <div
+          className={cn(
+            "flex items-center text-xs text-background w-fit px-2 py-0.5 rounded-sm",
+            isPro ? "bg-green-500" : " bg-gray-400"
+          )}
+        >
           <CreditCard className="size-3 mr-1" />
-          Free
+          {isPro ? "Pro" : "Free"}
         </div>
       </div>
     </div>

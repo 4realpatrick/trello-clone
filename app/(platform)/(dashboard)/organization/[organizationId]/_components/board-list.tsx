@@ -5,11 +5,12 @@ import Hint from "@/components/hint";
 import { Skeleton } from "@/components/ui/skeleton";
 import { HelpCircle, User2 } from "lucide-react";
 import Link from "next/link";
-// Function
+// Utils
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs";
 import { db } from "@/lib/db";
 import { getAvaliableCount } from "@/lib/org-limit";
+import { checkSubscription } from "@/lib/subscription";
 // Constant
 import { MAX_FREE_BOARDS } from "@/constant/boards";
 
@@ -27,6 +28,7 @@ const BoardList = async () => {
     },
   });
   const avaliableCount = await getAvaliableCount();
+  const isPro = await checkSubscription();
   return (
     <div className="space-y-4">
       <div className="flex items-center font-semibold text-lg text-neutral-700">
@@ -55,15 +57,21 @@ const BoardList = async () => {
           <FormPopover sideOffset={10} side="right">
             <div
               role="button"
-              className="aspect-video relative size-full bg-muted rounded-sm flex flex-col gap-y1 items-center justify-center hover:opacity-75 transition"
+              className="aspect-video relative size-full bg-primary rounded-sm flex flex-col gap-y1 items-center justify-center hover:opacity-75 transition"
             >
-              <p className="text-sm">Create new board</p>
-              <span className="text-xs">
-                {`${MAX_FREE_BOARDS - avaliableCount} remaining`}
+              <p className="text-sm text-foreground">Create new board</p>
+              <span className="text-xs text-neutral-500">
+                {isPro
+                  ? "Unlimited"
+                  : `${MAX_FREE_BOARDS - avaliableCount} remaining`}
               </span>
               <Hint
                 sideOffset={40}
-                descrption={`Free Workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace.`}
+                descrption={
+                  isPro
+                    ? "You've already unlock unlimited board, now just unleash your imagination"
+                    : "Free Workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace."
+                }
               >
                 <HelpCircle className="absolute bottom-2 right-2 size-[14px]" />
               </Hint>
