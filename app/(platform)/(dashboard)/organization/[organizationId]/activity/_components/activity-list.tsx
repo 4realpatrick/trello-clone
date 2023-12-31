@@ -39,5 +39,5 @@ ActivityList.Skeleton = () => (
     <Skeleton className="w-[75%] mt-1 h-14" />
   </ol>
 );
-ActivityList.displayname = "ActivityList";
+ActivityList.displayName = "ActivityList";
 export default ActivityList;

@@ -54,8 +54,8 @@ const FormDialog: React.FC<IFormDialogProps> = ({ children }) => {
         <DialogHeader>
           <DialogTitle>Create board</DialogTitle>
           <DialogDescription>
-            A board require a title and background, Click create when you're
-            done.
+            A board require a title and background, Click create when
+            you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <form className="grid gap-4 py-4" action={onSubmit}>

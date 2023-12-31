@@ -3,7 +3,7 @@
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Plus } from "lucide-react";
+import { Plus, Rocket } from "lucide-react";
 import Link from "next/link";
 import NavItem, { NavItemSkeleton, TOrganization } from "./nav-item";
 // Hooks
@@ -62,6 +62,7 @@ const Sidebar: React.FC<ISidebarProps> = ({
   return (
     <>
       <div className="font-medium text-xs flex items-center mb-1 select-none">
+        <Rocket className="text-primary size-4 md:size-5" />
         <span className="pl-4 md:text-lg text-xl text-primary">Workspaces</span>
         <Button
           asChild
