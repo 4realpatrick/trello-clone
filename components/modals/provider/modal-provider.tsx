@@ -1,6 +1,7 @@
 "use client";
 // Cmp
 import CardModal from "../card-modal";
+import ProModal from "../pro-modal";
 //Hooks
 import { useEffect, useState } from "react";
 const ModalProvider = () => {
@@ -13,6 +14,7 @@ const ModalProvider = () => {
   }
   return (
     <>
+      <ProModal />
       <CardModal />
     </>
   );
