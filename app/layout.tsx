@@ -2,14 +2,10 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
 // Type
 import type { Metadata } from "next";
-// Font
-import { Inter } from "next/font/google";
 // Style
 import "./globals.css";
 // Constant
 import { siteConfig } from "@/config/site";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: {
@@ -39,7 +35,7 @@ export default function RootLayout({
         colorScheme: "light",
       }}
     >
-      <body className={`${inter.className} bg-background`}>
+      <body className="bg-background">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
