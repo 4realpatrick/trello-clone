@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 import { createAuditLog } from "@/lib/create-audit-log";
 import { ACTION, ENTITY_TYPE } from "@prisma/client";
 import { decreaseAvaliableCount } from "@/lib/org-limit";
+import { checkSubscription } from "@/lib/subscription";
 
 const handler = async (data: TInputType): Promise<TReturnType> => {
   const { userId, orgId, orgSlug } = auth();
@@ -18,6 +19,7 @@ const handler = async (data: TInputType): Promise<TReturnType> => {
       error: "Unauthorized",
     };
   }
+  const isPro = await checkSubscription();
   const { id } = data;
   let board;
   try {
@@ -27,8 +29,9 @@ const handler = async (data: TInputType): Promise<TReturnType> => {
         orgId,
       },
     });
-
-    await decreaseAvaliableCount();
+    if (!isPro) {
+      await decreaseAvaliableCount();
+    }
 
     await createAuditLog({
       entityId: board.id,
