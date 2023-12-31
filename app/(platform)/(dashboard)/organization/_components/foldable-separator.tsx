@@ -28,26 +28,25 @@ const FoldableSeparator: React.FC<IFoldableSeparatorProps> = ({
       orientation="vertical"
       style={{ height: "inherit" }}
       className={`relative ${classNames}`}
-      children={
-        <Hint
-          descrption={isFold ? "Open the sidebar" : "Close the sidebar"}
-          side="top"
-          sideOffset={5}
-          asChild
+    >
+      <Hint
+        descrption={isFold ? "Open the sidebar" : "Close the sidebar"}
+        side="top"
+        sideOffset={5}
+        asChild
+      >
+        <div
+          className="absolute top-[50%] w-6 h-6 border rounded-md flex items-center justify-center translate-x-[-50%] bg-background cursor-pointer"
+          onClick={() => onToggleFold(!isFold)}
         >
-          <div
-            className="absolute top-[50%] w-6 h-6 border rounded-md flex items-center justify-center translate-x-[-50%] bg-background cursor-pointer"
-            onClick={() => onToggleFold(!isFold)}
-          >
-            {isFold ? (
-              <DoubleArrowRightIcon className="text-primary" />
-            ) : (
-              <DoubleArrowLeftIcon className="text-primary" />
-            )}
-          </div>
-        </Hint>
-      }
-    />
+          {isFold ? (
+            <DoubleArrowRightIcon className="text-primary" />
+          ) : (
+            <DoubleArrowLeftIcon className="text-primary" />
+          )}
+        </div>
+      </Hint>
+    </Separator>
   );
 };
 

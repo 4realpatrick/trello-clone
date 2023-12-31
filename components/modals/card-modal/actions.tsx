@@ -97,4 +97,5 @@ Actions.Skeleton = () => {
     </div>
   );
 };
+Actions.displayName = "Actions";
 export default Actions;

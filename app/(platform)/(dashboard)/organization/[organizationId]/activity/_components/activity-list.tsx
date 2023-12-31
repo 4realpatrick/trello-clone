@@ -7,7 +7,7 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const ActivityList = async () => {
-  const { orgId, orgRole } = auth();
+  const { orgId } = auth();
   if (!orgId) {
     redirect("/select-org");
   }
@@ -39,4 +39,5 @@ ActivityList.Skeleton = () => (
     <Skeleton className="w-[75%] mt-1 h-14" />
   </ol>
 );
+ActivityList.displayname = "ActivityList";
 export default ActivityList;

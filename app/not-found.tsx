@@ -14,7 +14,9 @@ const NotFound = () => {
     router.back();
   };
   return (
-    <div className="w-screen h-screen overflow-hidden bg-fixed bg-cover md:bg-[url('/404-bg.png')] relative md:flex">
+    <div
+      className={`w-screen h-screen overflow-hidden bg-fixed bg-cover md:bg-[url("/404-bg.png")] relative md:flex`}
+    >
       <div className="hidden md:block">
         <div className="md:w-[40vw] z-[1] md:absolute md:left-[10%] md:top-[40%] md:-translate-y-1/2">
           <h1 className={cn("text-6xl mb-8", notFoundFont.className)}>404</h1>
@@ -29,8 +31,9 @@ const NotFound = () => {
           <p
             className={cn("text-base hidden md:block", notFoundFont.className)}
           >
-            you've reached the edge of universe.The Page you've requested ,
-            can't be found. Don't Worry , you can return to previous page.
+            you&apos;ve reached the edge of universe.The Page you&apos;ve
+            requested , can&apos;t be found. Don&apos;t Worry , you can return
+            to previous page.
           </p>
           <div className="mt-10">
             <Button size="lg" variant="secondary" onClick={handleGoHome}>
