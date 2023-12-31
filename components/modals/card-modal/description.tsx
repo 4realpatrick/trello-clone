@@ -122,6 +122,6 @@ Description.Skeleton = () => {
     </div>
   );
 };
-
+Description.Skeleton.displayName = "DescriptionSkeleton";
 Description.displayName = "Description";
 export default Description;

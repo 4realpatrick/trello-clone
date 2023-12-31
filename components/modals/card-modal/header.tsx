@@ -110,5 +110,6 @@ Header.Skeleton = () => {
     </div>
   );
 };
+Header.Skeleton.displayName = "HeaderSkeleton";
 Header.displayName = "Header";
 export default Header;

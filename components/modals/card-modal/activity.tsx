@@ -37,5 +37,6 @@ Activity.Skeleton = () => {
     </div>
   );
 };
+Activity.Skeleton.displayName = "ActivitySkeleton";
 Activity.displayName = "Activity";
 export default Activity;
