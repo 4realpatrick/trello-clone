@@ -59,8 +59,10 @@ const BoardList = async () => {
               role="button"
               className="aspect-video relative size-full bg-primary rounded-sm flex flex-col gap-y1 items-center justify-center hover:opacity-75 transition"
             >
-              <p className="text-sm text-foreground">Create new board</p>
-              <span className="text-xs text-neutral-500">
+              <p className="text-sm text-primary-foreground">
+                Create new board
+              </p>
+              <span className="text-xs text-secondary-foreground">
                 {isPro
                   ? "Unlimited"
                   : `${MAX_FREE_BOARDS - avaliableCount} remaining`}
