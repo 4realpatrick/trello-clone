@@ -58,7 +58,7 @@ const FormDialog: React.FC<IFormDialogProps> = ({ children }) => {
             you&apos;re done.
           </DialogDescription>
         </DialogHeader>
-        <form className="grid gap-4 py-4" action={onSubmit}>
+        <form className="grid gap-4" action={onSubmit}>
           <FormPicker id="image" errors={fieldErrors} />
           <FormInput
             id="title"

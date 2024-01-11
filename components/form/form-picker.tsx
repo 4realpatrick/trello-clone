@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import FormErrors from "./form-errors";
 import Hint from "../hint";
+import { FaUnsplash } from "react-icons/fa";
 // Hooks
 import { useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
@@ -98,21 +99,26 @@ const FormPicker: React.FC<IFormPickerProps> = ({ id, errors }) => {
               target="_blank"
               className="opacity-0 group-hover:opacity-100 absolute bottom-0 w-full text-[10px] truncate hover:underline p-1 bg-background/50 text-primary text-xs"
             >
-              {img.user.name}
+              by {img.user.name}
             </Link>
           </div>
         ))}
       </div>
-      <div className="flex justify-center">
+      <FormErrors errors={errors} id="image" />
+      <div className="flex justify-center items-center">
         <Hint descrption="Change current images">
           <Shuffle
             className="cursor-pointer text-foreground hover:text-primary hover:animate-spin"
             onClick={fetchImages}
           />
         </Hint>
+        <div className="flex items-center ml-4">
+          Power by
+          <Link href="https://unsplash.com/">
+            <FaUnsplash className="ml-1 cursor-pointer size-6" />
+          </Link>
+        </div>
       </div>
-
-      <FormErrors errors={errors} id="image" />
     </div>
   );
 };
